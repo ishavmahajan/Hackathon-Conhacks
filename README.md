@@ -12,15 +12,13 @@ The goal is to reduce communication barriers by providing an accessible tool for
 - Optional text to speech
 
 # How It Works
-Input: Webcam captures hand movements
-Processing: Hand landmarks are extracted using MediaPipe Hands
-Model: A trained classifier predicts the gesture based on landmark data
-Output:
-Displays translated text
-Optionally converts text to speech
+- Input: Webcam captures hand movements
+- Processing: Hand landmarks are extracted using MediaPipe Hands
+- Model: A trained classifier predicts the gesture based on landmark data
+- Output: Displays translated text and optionally converts text to speech
 
 # Tech Stack
-Frontend: HTML
-Backend: Python
-Computer Vision: MediaPipe Hands
-(Update this as we go)
+- Frontend: HTML
+- Backend: Python
+- Computer Vision: MediaPipe Hands
+- (Update this as we go)
