@@ -7,7 +7,7 @@ mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
 
 hands = mp_hands.Hands(
-    max_num_hands=1,
+    max_num_hands=2,
     min_detection_confidence=0.7,
     min_tracking_confidence=0.7
 )
@@ -29,7 +29,7 @@ while True:
             mp_draw.draw_landmarks(
                 frame,
                 hand_landmarks,
-                mp.solutions.hands.HAND_CONNECTIONS
+                mp_hands.HAND_CONNECTIONS
             )
 
     cv2.imshow("Hand Tracking", frame)
