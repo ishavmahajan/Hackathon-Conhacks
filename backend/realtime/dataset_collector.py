@@ -66,6 +66,46 @@ while True:
         writer.writerow(landmark_list + ["B"])
         print("Saved B")
         file.flush()
+    
+    if key == ord('c') and landmark_list:
+        writer.writerow(landmark_list + ["C"])
+        print("Saved C")
+        file.flush()
+
+    if key == ord('d') and landmark_list:
+        writer.writerow(landmark_list + ["D"])
+        print("Saved D")
+        file.flush()
+    
+    if key == ord('e') and landmark_list:
+        writer.writerow(landmark_list + ["E"])
+        print("Saved E")
+        file.flush()
+
+    if key == ord('f') and landmark_list:   
+        writer.writerow(landmark_list + ["F"])
+        print("Saved F")
+        file.flush()
+
+    if key == ord('g') and landmark_list:
+        writer.writerow(landmark_list + ["G"])
+        print("Saved G")
+        file.flush()
+
+    if key == ord('h') and landmark_list:
+        writer.writerow(landmark_list + ["H"])
+        print("Saved H")
+        file.flush()
+
+    if key == ord('i') and landmark_list:
+        writer.writerow(landmark_list + ["I"])
+        print("Saved I")
+        file.flush()
+        
+    if key == ord('j') and landmark_list:
+        writer.writerow(landmark_list + ["J"])
+        print("Saved J")
+        file.flush()
 
     # Quit
     if key == ord('q'):
