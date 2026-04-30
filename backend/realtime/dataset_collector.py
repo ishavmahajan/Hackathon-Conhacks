@@ -102,9 +102,83 @@ while True:
         print("Saved I")
         file.flush()
         
+    if key == ord('k') and landmark_list:
+        writer.writerow(landmark_list + ["K"])
+        print("Saved K")
+        file.flush()
+    
+    if key == ord('l') and landmark_list:
+        writer.writerow(landmark_list + ["L"])
+        print("Saved L")
+        file.flush()
+
+    if key == ord('m') and landmark_list:
+        writer.writerow(landmark_list + ["M"])
+        print("Saved M")
+        file.flush()
+
+    if key == ord('n') and landmark_list:
+        writer.writerow(landmark_list + ["N"])
+        print("Saved N")
+        file.flush()
+    
+    if key == ord('o') and landmark_list:
+        writer.writerow(landmark_list + ["O"])
+        print("Saved O")
+        file.flush()
+        
+    if key == ord('p') and landmark_list:
+        writer.writerow(landmark_list + ["P"])
+        print("Saved P")
+        file.flush()   
+    
+    if key == ord('q') and landmark_list:
+        writer.writerow(landmark_list + ["Q"])
+        print("Saved Q")
+        file.flush()
+    
+    if key == ord('r') and landmark_list:
+        writer.writerow(landmark_list + ["R"])
+        print("Saved R")
+        file.flush()
+
+    if key == ord('s') and landmark_list:
+        writer.writerow(landmark_list + ["S"])
+        print("Saved S")
+        file.flush()
+
+    if key == ord('t') and landmark_list:
+        writer.writerow(landmark_list + ["T"])
+        print("Saved T")
+        file.flush()
+
+    if key == ord('u') and landmark_list:
+        writer.writerow(landmark_list + ["U"])
+        print("Saved U")
+        file.flush()
+
+    if key == ord('v') and landmark_list:
+        writer.writerow(landmark_list + ["V"])
+        print("Saved V")
+        file.flush()    
+
+    if key == ord('w') and landmark_list:
+        writer.writerow(landmark_list + ["W"])
+        print("Saved W")
+        file.flush()
+
+    if key == ord('x') and landmark_list:
+        writer.writerow(landmark_list + ["X"])
+        print("Saved X")
+        file.flush()
+
+    if key == ord('y') and landmark_list:
+        writer.writerow(landmark_list + ["Y"])
+        print("Saved Y")
+        file.flush()
 
     # Quit
-    if key == ord('q'):
+    if key == ord('z'):
         break
 
 cap.release()
