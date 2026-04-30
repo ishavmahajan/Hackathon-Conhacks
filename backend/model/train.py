@@ -23,14 +23,14 @@ data = pd.concat(all_data, ignore_index=True)
 print(f"\nTotal samples: {len(data)}")
 
 X = data.iloc[:, :-1].values
-y = data.iloc[:, -1].astype(str).values
+y = data.iloc[:, -1].astype(str).values  # Convert all labels to strings
 
 print("\nClass distribution:")
 for label, count in sorted(Counter(y).items(), key=lambda x: str(x[0])):
     print(f"  {label}: {count}")
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=42, stratify=y
 )
 
 print("\nTraining model...")
