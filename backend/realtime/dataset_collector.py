@@ -102,10 +102,6 @@ while True:
         print("Saved I")
         file.flush()
         
-    if key == ord('j') and landmark_list:
-        writer.writerow(landmark_list + ["J"])
-        print("Saved J")
-        file.flush()
 
     # Quit
     if key == ord('q'):
