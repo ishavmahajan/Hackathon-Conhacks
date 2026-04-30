@@ -6,4 +6,12 @@ __pycache__/
 .DS_Store
 
 data/wlasl/
-*.zip
+*.zip.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
