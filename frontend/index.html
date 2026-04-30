@@ -6,20 +6,20 @@
     <title>SignBridge — ASL Translator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+ 
     <!-- Ambient Background Layers -->
     <div class="bg-noise" aria-hidden="true"></div>
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="bg-blob bg-blob--primary" aria-hidden="true"></div>
     <div class="bg-blob bg-blob--secondary" aria-hidden="true"></div>
     <div class="bg-blob bg-blob--tertiary" aria-hidden="true"></div>
-
+ 
     <div class="container">
-
+ 
         <!-- Header -->
         <header class="app-header fade-up" style="--delay:0">
             <div class="tag">
@@ -34,33 +34,35 @@
             </h1>
             <p class="subtitle">Bridging the gap between ASL and spoken language — one gesture at a time</p>
         </header>
-
+ 
         <!-- Status Bar -->
         <div class="status-bar fade-up" style="--delay:1" id="status" role="status" aria-live="polite">
             <span class="status-dot" id="status-dot" aria-hidden="true"></span>
             <span id="status-text">Camera off — Ready to translate</span>
         </div>
-
+ 
         <!-- Video Box -->
         <div class="video-box fade-up" style="--delay:2" id="video-box" role="region" aria-label="Camera feed">
             <video id="video" autoplay playsinline aria-label="Camera stream"></video>
             <canvas id="canvas" aria-hidden="true"></canvas>
-
+ 
             <!-- Spotlight -->
             <div class="spotlight" id="spotlight" aria-hidden="true"></div>
-
+ 
             <!-- Corner decorations -->
             <div class="corner corner--tl" aria-hidden="true"></div>
             <div class="corner corner--tr" aria-hidden="true"></div>
             <div class="corner corner--bl" aria-hidden="true"></div>
             <div class="corner corner--br" aria-hidden="true"></div>
-
+ 
+            <!-- Scan line (active only) -->
+            <div class="scan-line" id="scan-line" aria-hidden="true"></div>
+ 
             <!-- Camera off overlay -->
             <div class="camera-off-overlay" id="camera-off-overlay" role="presentation">
                 <div class="overlay-content">
                     <div class="overlay-icon-ring">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="overlay-svg">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="overlay-svg">
                             <path d="M23 7l-7 5 7 5V7z"/>
                             <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
                         </svg>
@@ -70,85 +72,69 @@
                 </div>
             </div>
         </div>
-
+ 
         <!-- Guide -->
         <div class="guide fade-up" style="--delay:3" id="guide" aria-live="polite">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                 style="vertical-align:middle;margin-right:5px;opacity:0.45;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px;opacity:0.5;">
                 <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/>
                 <path d="M18 11a2 2 0 0 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
             </svg>
             Position your hand clearly in the frame
         </div>
-
+ 
         <!-- Controls -->
         <div class="controls fade-up" style="--delay:3">
-            <button id="camera-btn" class="btn btn-primary" aria-label="Start camera">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
+            <button id="camera-btn" type="button" class="btn btn-primary" aria-label="Start camera">
                 Start Camera
             </button>
         </div>
-
+ 
         <!-- Output Card -->
-        <div class="output-card fade-up" style="--delay:4" id="output-card"
-             role="region" aria-label="Translation output">
+        <div class="output-card fade-up" style="--delay:4" id="output-card" role="region" aria-label="Translation output">
             <div class="output-glow" aria-hidden="true"></div>
-
+ 
             <div class="output-header">
                 <span class="output-label">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                         style="vertical-align:middle;margin-right:4px;opacity:0.7;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;opacity:0.7;">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
                     Detected Sign
                 </span>
                 <span class="confidence" id="confidence" aria-live="polite"></span>
             </div>
-
+ 
             <div class="output-text" id="translation" role="alert" aria-atomic="true">—</div>
-
-            <div class="output-history" id="output-history" aria-label="Detection history"></div>
+            <div class="output-confidence" id="confidence"></div>
+ 
+            <div class="output-history" id="output-history" aria-label="Detection history">
+                <!-- History items injected by JS -->
+            </div>
         </div>
-
+ 
         <!-- Action Buttons -->
         <div class="actions fade-up" style="--delay:5">
-            <button id="speak-btn" class="btn btn-ghost" disabled aria-label="Speak translation">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                </svg>
+            <button id="speak-btn" type="button" class="btn btn-ghost" disabled aria-label="Speak translation">
                 Speak
             </button>
-            <button id="clear-btn" class="btn btn-ghost" disabled aria-label="Clear translation">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="3 6 5 6 21 6"/>
-                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                    <path d="M10 11v6M14 11v6"/>
-                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-                </svg>
+            <button id="clear-btn" type="button" class="btn btn-ghost" disabled aria-label="Clear translation">
                 Clear
             </button>
         </div>
-
+ 
         <!-- Footer -->
         <footer class="app-footer fade-up" style="--delay:6">
             <span>SignBridge</span>
             <span class="footer-sep">·</span>
-            <span>Powered by MediaPipe &amp; Flask</span>
+            <span>Powered by MediaPipe & Flask</span>
             <span class="footer-sep">·</span>
             <span>Built for accessibility</span>
         </footer>
-
+ 
     </div>
-
+ 
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
